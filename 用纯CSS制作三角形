@@ -43,6 +43,9 @@ i {
   </style>
 </head>
 <body>
+最简单也是最实用的方法,将元素的宽带和高度设为0，通过border属性来实现三角形。
+优点：简单、可创建不同角度的三角形
+缺点：IE6不支持transparent，可以通过chroma滤镜来解决
   <div class="cnt">
    <i class="i left"></i>
    <i class="i right"></i>
@@ -52,6 +55,4 @@ i {
 </body>
 </html>
 
-最简单也是最实用的方法,将元素的宽带和高度设为0，通过border属性来实现三角形。
-优点：简单、可创建不同角度的三角形
-缺点：IE6不支持transparent，可以通过chroma滤镜来解决
+
