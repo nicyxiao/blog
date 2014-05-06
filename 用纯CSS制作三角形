@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>纯CSS实现三角形的制作  By Nicyxiao </title>
+  <style>
+  .cnt {
+  background:orange;
+  width:300px;
+  height:100px;
+  padding:30px;
+  position:relative;
+  margin:0 auto;
+}
+
+i {
+  position:absolute;
+  height:0;
+  width:0;
+  line-height:0;
+  font-size:0;
+  z-index:0;
+  border-style:solid;
+}
+
+.left {
+  border-width:20px 20px 20px 0;
+  border-color:transparent red transparent transparent;
+  _border-color:tomato red tomato tomato;/*for ie6 */
+  _filter:chroma(color=tomato);/*使用chroma滤镜for ie6 */
+  top:15px;
+  left:-20px;
+}
+
+.bottom {
+  border-width:20px 20px 0 20px;
+  border-color:red transparent transparent transparent;
+  _border-color:tomato tomato red tomato;/*for ie6 */
+  _filter:chroma(color=tomato);/*使用chroma滤镜for ie6 */
+  top:160px;
+  left:20px;
+}
+  </style>
+</head>
+<body>
+  <div class="cnt">
+   <i class="i left"></i>
+   <i class="i right"></i>
+   <i class="i bottom"></i>
+    content
+  </div>
+</body>
+</html>
+
+最简单也是最实用的方法,将元素的宽带和高度设为0，通过border属性来实现三角形。
+优点：简单、可创建不同角度的三角形
+缺点：IE6不支持transparent，可以通过chroma滤镜来解决
