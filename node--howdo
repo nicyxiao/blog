@@ -1,0 +1,26 @@
+
+npm install howdo -g //先安装howdo的包，若是全局的modules，加“-g”，若非全局，去掉“-g”
+var Howdo = require("howdo");  //引用howdo包
+
+//一件事情做完再做另一件事
+Howdo.task(function(next){
+    size.getImageSize(function(s){
+        next(null, s);
+    });
+}).task(function(next,s){
+      next(null, s);
+}).follow(function(next, s){
+    if (s == 100)
+    {
+
+    }
+});
+
+同时做几件事，都做完后再做together，together里面可以调用前面的参数。arg1就是1，arg2就是2，arg3就是3
+Howdo.task(function(done){
+    done(null, 1, 2);
+}).task(function(done){
+    done(null, 3);
+}).together(function(err, arg1, arg2, arg3){
+    arg1 + arg2
+});
