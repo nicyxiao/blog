@@ -1,0 +1,2 @@
+1.华为手机自带浏览器对flex的兼容性
+2.浏览器无痕模式下无法使用localstage和sessionstage来存储数据，但可以使用cookie来存储
