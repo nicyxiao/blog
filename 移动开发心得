@@ -1,2 +1,39 @@
-1.华为手机自带浏览器对flex的兼容性
-2.浏览器无痕模式下无法使用localstage和sessionstage来存储数据，但可以使用cookie来存储
+这次做公司移动端官网，踩了几个坑，mark一下。
+
+一、华为手机自带浏览器对flex的兼容性
+    问题描述：因为华为自带浏览器使用的UC低版本内核，对flex支持度非常有限，所以使用flex,有时候即使添加了-webkit前缀也是无效的。
+    解决方法：
+    1.  display: flex;写法
+    ```css
+    .foo{
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    ```
+    2.justify-content: center;
+    .foo{
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    3.align-items: center
+    .foo{
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+    
+    4.flex: 1
+    .foo{
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 0%;
+    }
+二、浏览器无痕模式下无法使用localstage和sessionstage来存储数据，但可以使用cookie来存储
+
+三、用html去更新元素的内容时，绑定的事件会多次触发。
