@@ -4,14 +4,13 @@
     问题描述：因为华为自带浏览器使用的UC低版本内核，对flex支持度非常有限，所以使用flex,有时候即使添加了-webkit前缀也是无效的。
     解决方法：
     1.  display: flex;写法
-    ```css
     .foo{
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
     }
-    ```
+
     2.justify-content: center;
     .foo{
         -webkit-box-pack: center;
@@ -34,6 +33,28 @@
         display: block;
         width: 0%;
     }
-二、浏览器无痕模式下无法使用localstage和sessionstage来存储数据，但可以使用cookie来存储
+    注意：给flex添加前缀并不是万能的，其原因是不能用行内元素，要改成block才能更好的支持flex，当元素使用flex:1时，要增加width:0%; 且不能使用margin:0 auto;
+    
+二、手机浏览器无痕模式下和vivo自带浏览器无法使用localstage和sessionstage来存储数据，但可以使用cookie来存储
 
 三、用html去更新元素的内容时，绑定的事件会多次触发。
+    解决办法：jquery绑定事件之前先解绑。
+    ;(function ($) {
+        $.extend($.fn, {
+             bindHack :function(e,choose,callback){
+                    if(typeof choose === "string"){
+                        $(document).off(e, choose).on(e, choose, function(){
+                            callback && callback.call(this);
+                        });
+                    }else if(typeof choose === "function"){
+                        $(this).off(e).on(e,function(){
+                            choose && choose.call(this);
+                        })
+                    }
+                }
+            });
+    })(jQuery);
+    
+    $(".foo").bindHack("click",function(){});
+    或者
+    $(document).on("click",".foo",function(){});
